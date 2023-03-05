@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import jinja2
+import random
 from collections import OrderedDict
 import simplegallery.common as spg_common
 from simplegallery.logic.gallery_logic import get_gallery_logic
@@ -54,7 +55,7 @@ def build_html(gallery_config):
         for image in images_data:
             images_data[image]['description'] = ''
 
-    images_data_list = [{**images_data[image], "name": image} for image in images_data.keys()]
+    images_data_list = [{**images_data[image], "name": image} for image in random.shuffle(images_data.keys())]
 
     # Find the first photo for the background if no background photo specified
     background_photo = gallery_config["background_photo"]
